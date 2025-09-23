@@ -40,7 +40,6 @@ def analisar_texto(texto):
     return cont_palavras, freg_palavras, freg_letras
 
 
-#programa principal
 texto=input('digite seu texto: ')
 cont_palavras, freg_palavras, freg_letras=analisar_texto(texto)
 
