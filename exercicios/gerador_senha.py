@@ -16,20 +16,30 @@
 
 import random, string
 
-def gerar_senha(comprimento):
-    if comprimento < 4:
-        print('Forneça um novo comprimento.')
-    else:
-        senha=[
-            random.choice(string.ascii_letters), # Escolhe um caracter de letra maiúscula ou minúscula
-            random.choice(string.digits), # escolha um caracter de numero
-            random.choice(string.punctuation), # Escolhe um caracter de pontuação especial
-        ]
-        possibilidades="".join([string.ascii_letters,string.digits,string.punctuation]) #Usando uma variavel para juntar todos os tipos de caracteres possivel para a senha, usando join para fazer essa junção, transformando de lista para string
-        senha.extend(random.choices(possibilidades, k=comprimento -3 )) #Criando uma extençãa na lista de senha, adicionando os caracteres que faltam na senha, diminuindo 3 pois ja foram passados na lista 
-        
-        random.shuffle(senha) # embaralha os caracteres 
-        return ''.join(senha) # join é um metodo de string, recebe uma lista como parametro e retorna uma string
-    
-comprimento=int(input('Digite o comprimento da senha: '))
-print(gerar_senha(comprimento))
+def gerar_senha():
+    while True:
+        try:
+            tamanho=int(input('Digite a quantidade de caracteres desejado para a senha: '))
+            if tamanho < 4:
+                print('-'*86)
+                print('Senha mmuito curta, a senha deve ter pelo menos 4 digitos, Digite novamente o tamanho!'.upper())
+                print('-'*86)
+                continue
+        except ValueError:
+            print('-'*41)
+            print('Voce digitou uma letra, digite um numero!'.upper())
+            print('-'*41)
+            continue
+        else:
+                senha=[
+                    random.choice(string.ascii_letters), # Escolhe um caracter de letra maiúscula ou minúscula
+                    random.choice(string.digits), # escolha um caracter de numero
+                    random.choice(string.punctuation), # Escolhe um caracter de pontuação especial
+                ]
+                possibilidades="".join([string.ascii_letters,string.digits,string.punctuation]) #Usando uma variavel para juntar todos os tipos de caracteres possivel para a senha, usando join para fazer essa junção, transformando de lista para string
+                senha.extend(random.choices(possibilidades, k=tamanho -3 )) #Criando uma extençãa na lista de senha, adicionando os caracteres que faltam na senha, diminuindo 3 pois ja foram passados na lista 
+
+                random.shuffle(senha) # embaralha os caracteres 
+        return ' '.join(senha) # join é um metodo de string, recebe uma lista como parametro e retorna uma string
+
+print(gerar_senha())
